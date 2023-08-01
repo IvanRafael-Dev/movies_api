@@ -12,10 +12,12 @@ export default class GetMovieService implements IGetMovieService {
   }
   
   async execute(id: string): Promise<Movie> {
-    const [row] = await this.dbConnection.query<RowDataPacket[]>('SELECT * FROM movies where id = ?', [id]);
-    console.log('row aqui', row);
-    
-    if (!row.length) {
+    const [[row]] = await this.dbConnection
+      .query<RowDataPacket[]>(
+        'SELECT * FROM movies where id = ?', [id]
+      );
+
+    if (!row) {
       throw new NotFoundError('Movie not found');
     }
     
