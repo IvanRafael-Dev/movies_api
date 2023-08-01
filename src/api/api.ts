@@ -1,9 +1,7 @@
-require('dotenv').config();
-const express = require('express');
+import 'dotenv/config';
+import express from 'express'
 
 const app = express();
-
-const API_PORT = process.env.API_PORT || 3000;
 
 app.use(express.json());
 
@@ -15,4 +13,4 @@ app.post('/movies', (req, res) => {
   return res.status(201).json({ message: 'Movie created successfully!' });
 });
 
-app.listen(API_PORT, console.log(`Server is running on port ${3000}`));
+export { app };
