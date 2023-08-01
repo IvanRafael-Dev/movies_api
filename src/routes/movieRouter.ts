@@ -1,11 +1,13 @@
 import { Router } from "express";
-import GetMoviesController from "../controllers/GetMoviesController";
-import MySQLConnection from "../database/connection";
-import { getMoviesController } from "./factory/GetMoviesController";
+import { getMoviesController } from "./factory/makeGetMoviesController";
+import { getMovieController } from "./factory/makeGetMovieController";
+import { postMovieController } from "./factory/makePostMovieController";
 
 const router = Router();
 
 router
   .get('/movies', getMoviesController.execute.bind(getMoviesController))
+  .get('/movies/:id', getMovieController.execute.bind(getMovieController))
+  .post('/movies', postMovieController.execute.bind(postMovieController));
 
 export { router as movieRouter }
