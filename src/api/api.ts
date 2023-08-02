@@ -1,10 +1,17 @@
 import 'dotenv/config';
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import { movieRouter } from '../routes/movieRouter';
 import { errorHandler } from '../middlewares/errorHandler';
 import { votesRouter } from '../routes/votesRouter';
 
 const app = express();
+
+app.use((request: Request, response: Response, next: NextFunction): void => {
+  response.set('access-control-allow-origin', '*')
+  response.set('access-control-allow-methods', '*')
+  response.set('access-control-allow-headers', '*')
+  next()
+})
 
 app.use(express.json());
 
