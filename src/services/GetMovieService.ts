@@ -11,7 +11,7 @@ export default class GetMovieService implements IGetMovieService {
     this.dbConnection = dbConnection;
   }
   
-  async execute(id: string): Promise<Movie> {
+  async execute(id: number): Promise<Movie> {
     const [[row]] = await this.dbConnection
       .query<RowDataPacket[]>(
         'SELECT * FROM movies where id = ?', [id]

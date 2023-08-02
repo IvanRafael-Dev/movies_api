@@ -10,7 +10,7 @@ export default class GetMovieController {
 
   async execute(req: Request, res: Response, next: NextFunction) {
     try {
-      const movie = await this.getMovieService.execute(req.params.id);
+      const movie = await this.getMovieService.execute(+req.params.id);
       return res.status(200).json(movie);      
     } catch (error) {
       next(error);
