@@ -13,7 +13,7 @@ export default class VoteMovieController {
       return res.status(200).json(
         { 
           message: `Vote successfully registered`,
-          movie: movie.title
+          movie: movie.name
         }
       );      
     } catch (error) {

@@ -9,8 +9,9 @@ export default class VoteMovieService implements IVoteMovieService {
     this.dbConnection = dbConnection;
   }
   async execute(movieId: number, votes: number): Promise<Movie> {
-    console.log(`movieId: ${movieId}, votes: ${votes}`);
-    
+    // if (isNaN(movieId) || isNaN(votes)) {
+
+    // }
     const [row] = await this.dbConnection.query<ResultSetHeader>('UPDATE votes SET voteCount = ? WHERE movieId = ?', [votes, movieId]);
     if (row.affectedRows === 0) {
       throw new NotFoundError(`Movie with id '${movieId}' not found`);

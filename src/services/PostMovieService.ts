@@ -25,7 +25,7 @@ export default class PostMovieService implements IPostMovieService {
       const [row] = await this.dbConnection.query<ResultSetHeader>('INSERT INTO movies SET ?', [movie]);      
       return { id: row.insertId, ...movie };      
     } catch (error) {
-      throw new ConflictError(`Movie '${movie.title}' already exists in database`);
+      throw new ConflictError(`Movie '${movie.name}' already exists in database`);
     }
   }
 }
