@@ -1,7 +1,6 @@
 export interface Movie {
   id: number;
   title: string;
-  director: string;
-  year: number;
-  votes: number;
+  image: string;
 }
+

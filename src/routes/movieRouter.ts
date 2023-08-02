@@ -10,6 +10,6 @@ router
   .get('/movies', getMoviesController.execute.bind(getMoviesController))
   .get('/movies/:id', getMovieController.execute.bind(getMovieController))
   .post('/movies', postMovieController.execute.bind(postMovieController))
-  .post('/movies/:id/vote', voteMovieController.execute.bind(voteMovieController));
+  .patch('/movies/votes/:id', voteMovieController.execute.bind(voteMovieController));
 
 export { router as movieRouter }

@@ -2,12 +2,14 @@ import 'dotenv/config';
 import express from 'express'
 import { movieRouter } from '../routes/movieRouter';
 import { errorHandler } from '../middlewares/errorHandler';
+import { votesRouter } from '../routes/votesRouter';
 
 const app = express();
 
 app.use(express.json());
 
 app.use(movieRouter);
+app.use(votesRouter);
 
 app.use(errorHandler)
 

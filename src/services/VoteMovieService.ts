@@ -8,13 +8,14 @@ export default class VoteMovieService implements IVoteMovieService {
   constructor(dbConnection: Pool) {
     this.dbConnection = dbConnection;
   }
-  async execute(movieId: number): Promise<Movie> {
-    const [row] = await this.dbConnection.query<ResultSetHeader>('UPDATE movies SET votes = votes + ? WHERE id = ?', [1, movieId]);
-    console.log(row);
-    const [[movie]] = await this.dbConnection.query<RowDataPacket[]>('SELECT * FROM movies WHERE id = ?', [movieId]);
+  async execute(movieId: number, votes: number): Promise<Movie> {
+    console.log(`movieId: ${movieId}, votes: ${votes}`);
+    
+    const [row] = await this.dbConnection.query<ResultSetHeader>('UPDATE votes SET voteCount = ? WHERE movieId = ?', [votes, movieId]);
     if (row.affectedRows === 0) {
       throw new NotFoundError(`Movie with id '${movieId}' not found`);
     }
+    const [[movie]] = await this.dbConnection.query<RowDataPacket[]>('SELECT * FROM movies WHERE id = ?', [movieId]);
     return movie as unknown as Movie;
   }
 }
