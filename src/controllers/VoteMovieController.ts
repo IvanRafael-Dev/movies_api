@@ -9,6 +9,7 @@ export default class VoteMovieController {
   
   async execute(req: Request, res: Response, next: NextFunction) {
     try {
+      
       const movie = await this.voteMovieService.execute(+req.params.id, +req.body.voteCount);      
       return res.status(200).json(
         { 
